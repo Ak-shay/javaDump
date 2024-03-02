@@ -1,0 +1,68 @@
+package CoreConcepts;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
+/**
+ * Think stream like a pipeline through which our collection elements pass
+ * through while passing various operations like filtering, sorting etc can
+ * applied useful when bulk processing as it can do parallel processing
+ * 
+ * step1: create/open stream of collection step2: add intermediate operations
+ * like filter, sorted, map, distinct etc It transform one stream to another so
+ * that more operations can be applied these are lazy operations -> gets
+ * executed only when terminal operation is invoked step3: termination
+ * operation: collect, reduce, count etc.. , it will close the stream, no more
+ * operations can be added original collection is affected, you'll get a new
+ */
+
+
+/*
+ * How to create Stream?
+ * 
+ * from collection: refName.stream()
+ * from array: Arrays.stream(refName);
+ * Stream.of(1,2,3)
+ * Stream.builder().add(1).add(1).build()
+ * Stream.iterate(startPoint, (Integer n)> n+1000).limit(5)  
+ */
+
+/**
+ * filter
+ * map((String s) -> s.toLowerCase())
+ * flatMap -> takes stream of streams and return a stream of data type
+ */
+public class Stream {
+	public static void main(String args[]) {
+		List<Integer> salary = new ArrayList<Integer>();
+		salary.add(1000);
+		salary.add(2000);
+		salary.add(3000);
+		salary.add(4000);
+		salary.add(5000);
+
+		// get count of salary >= 3000
+
+		long cnt = salary.stream().filter((Integer s) -> {
+			return s >= 3000;
+		}).count();
+		System.out.println(cnt);
+		System.out.println("hello");
+		
+		//  create a stream from primitive array
+		// Array.stream(refName)
+		
+		List<List<Integer>> l = Arrays.asList(
+			Arrays.asList(1,2,3),
+			Arrays.asList(4,5,6),
+			Arrays.asList(7,8,9)
+		);
+		List<Integer> finalList = l.stream().flatMap((List<Integer> i) -> i.stream()).collect(Collectors.toList());
+		
+		
+	}
+
+}

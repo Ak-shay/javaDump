@@ -1,0 +1,94 @@
+package LLDQuestions;
+
+import java.util.Deque;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
+
+/**
+ * Design tic tac toe game
+ * 2 player with a marker
+ * n*n board
+ * winning condition
+ * chance one by one
+ * Game can end with a winner or draw
+ * Game history
+ * undo functionality
+ */
+
+/**
+ * Player
+ * Cell
+ * Board
+ * 
+ * 
+ */
+
+class TicTacToePlayer {
+	String name;
+	Marker marker;
+	
+	TicTacToePlayer(String name, Marker marker) {
+		this.name = name;
+		this.marker = marker;
+	}
+}
+
+abstract class Marker {
+	protected char marker;
+	
+	Marker(char ch) {
+		this.marker = ch;
+	}
+}
+
+
+class XMarker extends Marker {
+	XMarker() {
+		super('X');
+	}
+}
+
+class OMarker extends Marker {
+	OMarker() {
+		super('O');
+	}
+}
+
+class GameController {
+	Queue<TicTacToePlayer> players;
+	
+	GameController(List<Player> players)
+	
+	void makeMove() {
+		
+	}
+}
+
+class TicTacToeBoard {
+	Marker[][] board;
+	
+	TicTacToeBoard(int size) {
+		this.board = new char[size][size];
+	}
+}
+
+class TicTacToeGame {
+	TicTacToeBoard board;
+	GameController controller;
+	
+	TicTacToeGame(int size, List<Player> players) {
+		this.board = new TicTacToeBoard(size);
+		this.controller = new GameController(players);
+	}
+	
+	
+}
+
+
+public class TicTacToe {
+	public static main(String args[]) {
+		TicTacToeGame g1 = new TicTacToeGame()
+	}
+
+}

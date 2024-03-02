@@ -1,0 +1,100 @@
+package LLDQuestions;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Design a parking lot
+ * Requirements:
+ * 1. Multi level parking
+ * 2. Two wheeler and four wheeler space
+ * 3. Multiple entry gate
+ * 4. get nearest slot and assign a ticket 
+ * 5. multiple Exits 
+ * 6. Give ticket and pay due
+ */
+
+
+class Vehicle {
+	String name;
+	String type;
+	Vehicle(String name, String type) {
+		this.name = name;
+		this.type = type;
+	}
+}
+
+class Slot {
+	String id;
+	Vehicle vehicle;
+	
+	void parkVehicle(Vehicle v) {
+		this.vehicle = v;
+	};
+	
+	Slot(String id) {
+		this.id = id;
+		this.vehicle = null;
+	}
+	
+	boolean isEmpty() {
+		return this.vehicle == null;
+	}
+	
+	void emptySlot() {
+		this.vehicle = null;
+	}
+}
+
+
+interface SearchSlot {
+	Slot findSlot();
+}
+
+abstract class SlotManager {
+	protected List<Slot> slots;
+	
+	void parkVehicle(Vehicle v) {
+		// get nearest slot
+	};
+}
+
+class TwoWheelerSlotManager extends SlotManager {
+
+	TwoWheelerSlotManager(int numOfSlots) {
+		this.slots = new ArrayList<Slot>();
+		for (int i = 0; i<numOfSlots; i++) {
+			this.slots.add(new Slot("twoWheelerSlot" + i));
+		}
+	}	
+}
+
+class FourWheelerSlotManager extends SlotManager {
+
+	FourWheelerSlotManager(int numOfSlots) {
+		this.slots = new ArrayList<Slot>();
+		for (int i = 0; i<numOfSlots; i++) {
+			this.slots.add(new Slot("fourWheelerSlot" + i));
+		}
+	}	
+}
+
+
+
+public class ParkingLot {
+	String name;
+	private TwoWheelerSlotManager twoWheelerManager;
+	private FourWheelerSlotManager fourWheelerManager;
+	
+	ParkingLot(int numOfTwoWheelerSpots, int numOfFourWheelerSpots) {
+		this.twoWheelerManager = new TwoWheelerSlotManager(numOfTwoWheelerSpots);
+		this.fourWheelerManager = new FourWheelerSlotManager(numOfFourWheelerSpots);
+	}
+	
+	public static void main(String args[]) {
+		Vehicle v1 = new Vehicle("v1", "TwoWheeler");
+		Vehicle v2 = new Vehicle("v2", "FourWheeler");
+		System.out.println("hey");
+	}
+
+}

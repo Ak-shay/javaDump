@@ -1,0 +1,93 @@
+package CoreConcepts;
+
+import java.util.function.Consumer;
+
+/**
+ * Functional interface - interface with 1 abstract method
+ * Lambda expression is a way implementing functional interface
+ * 
+ */
+
+@FunctionalInterface // not required
+interface FunctionalIntEx {
+	
+	// only 1 abstract method
+	void print(String s);
+	
+	// inherited from Object, no need to impl in class
+	String toString();
+	
+	
+	// not abstract
+	private void m1() {
+		
+	}
+	// not abstract
+	static void m2() {
+		System.out.println("abstract of interface");
+	}
+	// not abstract
+	private static void m3() {
+		
+	}
+	
+	default void print() {
+		System.out.println("default");
+	}
+}
+
+/*
+ * How can we implement functional interface
+ */
+
+
+class FunctionalIntExImpl implements FunctionalIntEx {
+	public void print(String s) {
+		System.out.println(s);
+	}
+}
+
+
+
+public class Lambda {
+	public static void main(String[] args) {
+		// allowed 
+		FunctionalIntEx.m2();
+		
+		//M1 of implementing Functional interface
+		FunctionalIntEx ob3 = new FunctionalIntExImpl();
+		ob3.print("basic implementation");
+		ob3.print();
+		
+		// M2 of implementing Functional interface
+		FunctionalIntEx ob = new FunctionalIntEx() {
+			public void print(String s) {
+				System.out.println(s);
+			}
+		};
+		ob.print("anonymous method");
+		
+		// M3 of implementing Functional interface
+		FunctionalIntEx ob2 = (String v) -> {
+			System.out.println(v);
+		};
+		
+		ob2.print("lambda expression");
+		
+
+		/*
+		 * Types of functional interface  (pre defined)
+		 * Consumer (accepts T return void) -> Consumer<T> c = (Object ob) -> {}
+		 * Supplier (accepts no value return T) -> Supplier<T> = c() -> {}
+		 * 
+		 * 
+		 * 
+		 */
+		Consumer<String> c = (String s) -> {System.out.println(s)};
+		c.accept("consumer functonal interface");
+		
+		Supplier<String> s = () -> {return "Supplier functional interface";};
+				
+	}
+
+}

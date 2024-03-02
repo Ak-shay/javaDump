@@ -1,0 +1,20 @@
+package CoreConcepts;
+
+class SharedResource {
+	int counter;
+	
+	void increment() {
+		this.counter++;
+	}
+	
+	int get() {
+		return this.counter;
+	}
+}
+
+public class AtomicOperation {
+	public static void main(String args[]) {
+		SharedResource r = new SharedResource();
+		
+	}
+}

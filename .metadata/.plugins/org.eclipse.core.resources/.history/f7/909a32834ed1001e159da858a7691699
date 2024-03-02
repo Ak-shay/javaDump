@@ -1,0 +1,43 @@
+package LLDQuestions;
+
+/**
+ * Design a parking lot
+ * Requirements:
+ * 1. Multi level parking
+ * 2. Two wheeler and four wheeler space
+ * 3. Multiple entry gate
+ * 4. get nearest slot and assign a ticket 
+ * 5. multiple Exits 
+ * 6. Give ticket and pay due
+ */
+
+
+class Vehicle {
+	String name;
+	String type;
+}
+
+class Slot {
+	String id;
+	Vehicle vehical;
+	
+	void parkVehicle(Vehicle v) {
+		this.vehical = v;
+	};
+	
+	Slot(String id) {
+		this.id = id;
+		this.vehical = null;
+	}
+	
+	boolean isEmpty() {
+		return this.vehical == null;
+	}
+}
+
+public class ParkingLot {
+	public static void main(String args[]) {
+		System.out.println("hey");
+	}
+
+}

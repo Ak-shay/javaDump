@@ -1,0 +1,122 @@
+package CoreConcepts;
+
+import java.util.concurrent.atomic.AtomicInteger;
+
+/*
+ *  Atomic v/s Volatile
+ *  Atomic is thread safe
+ *  Volatile has relation with thread safety (not safe)
+ *  
+ *  each CPU core has its own L1 cache
+ *  then L3 cache shared by all cores
+ *  then memory (RAM)
+ */
+
+class SharedResource1 {
+	int counter;
+	
+	void increment() {
+		this.counter++;
+		// this is not atomic
+		// steps as follow
+		// 1. load value of counter
+		// 2. increment valued of counter with 1
+		// 3. assign new value to counter
+		
+		// suppose two thread to increment in parallel
+		// both will load 1 as increment to 2 
+		// and assign counter to 2
+	}
+	
+	int get() {
+		return this.counter;
+	}
+}
+
+class SharedResource2 {
+	AtomicInteger counter; // uses CAS compare and swap (optimistic concurrency)
+	
+	SharedResource2() {
+		this.counter = new AtomicInteger(0);
+	}
+	
+	void increment() {
+		this.counter.incrementAndGet();
+	}
+	
+	int get() {
+		return this.counter.get();
+	}
+}
+
+class SharedResource3 {
+	volatile int counter; // uses CAS compare and swap (optimistic concurrency)
+	
+	void increment() {
+		this.counter++;
+	}
+	
+	int get() {
+		return this.counter;
+	}
+}
+
+public class AtomicOperation {
+	public static void main(String args[]) {
+		SharedResource1 r = new SharedResource1();
+		Thread t1 = new Thread(() -> {
+			for (int i = 0; i<10000; i++) {
+				r.increment();
+			}
+		});
+		Thread t2 = new Thread(() -> {
+			for (int i = 0; i<10000; i++) {
+				r.increment();
+			}
+		});
+		
+		t1.start();
+		t2.start();
+		
+		try {
+			t2.join();
+			t1.join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		System.out.println(r.get()); // wrong answer
+		
+		// solution?
+		// 1. make increment method synchronized 
+		// 2. Lock free operation using atomic integer
+		
+		SharedResource2 r2 = new SharedResource2();
+		Thread t3 = new Thread(() -> {
+			for (int i = 0; i<10000; i++) {
+				r2.increment();
+			}
+		});
+		Thread t4 = new Thread(() -> {
+			for (int i = 0; i<10000; i++) {
+				r2.increment();
+			}
+		});
+		
+		t3.start();
+		t4.start();
+		
+		try {
+			t3.join();
+			t4.join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		System.out.println(r2.get()); // 20000 answer
+	}
+}

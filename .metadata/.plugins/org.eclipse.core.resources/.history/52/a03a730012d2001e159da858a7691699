@@ -1,0 +1,30 @@
+package DesignPattern;
+/**
+ * Create object based on some conditions
+ */
+
+abstract class Shape {
+	int sides;
+}
+
+class Triangle extends Shape {
+	Triangle() {
+		this.sides = 3;
+	}
+}
+
+class Rectangle extends Shape {
+	Rectangle() {
+		this.sides = 4;
+	}
+}
+
+class Circle extends Shape {
+	Triangle() {
+		this.sides = 0;
+	}
+}
+
+public class Factory {
+
+}

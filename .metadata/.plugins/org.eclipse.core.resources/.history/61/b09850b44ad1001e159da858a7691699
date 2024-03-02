@@ -1,0 +1,44 @@
+package LLDQuestion;
+
+/**
+ * Design a parking lot
+ * Requirements:
+ * 1. Multi level parking
+ * 2. Two wheeler and four wheeler space
+ * 3. Multiple entry gate
+ * 4. get nearest slot and assign a ticket 
+ * 5. multiple Exits 
+ * 6. Give ticket and pay due
+ */
+
+enum VehicleType {
+	TWOWHEELER,
+	FOURWHEELER
+	VehicleType () {
+		super();
+	}
+};
+
+enum Level {
+	  LOW,
+	  MEDIUM,
+	  HIGH
+	}
+
+
+class Vehicle {
+	
+	String name;
+	VehicleType type;
+	
+}
+
+class Slot {
+	Vehicle vehical;
+	
+	void parkVehicle()
+}
+
+public class ParkingLot {
+
+}

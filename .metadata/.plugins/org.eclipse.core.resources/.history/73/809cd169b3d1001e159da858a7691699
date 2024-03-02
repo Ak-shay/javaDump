@@ -1,0 +1,48 @@
+package LLDQuestions;
+
+/**
+ * Design a car rental system (zoom car)
+ * 
+ * Flow:
+ * 1. User searches and gets list of vehicles near him. (Filter based on location and and vehicle type)
+ * 2. User reserve a vehicle and gets a invoice (calculate cost per day)
+ * 3. User returns the vehicle and pay the amount
+ * 
+ * Objects:
+ * User
+ * Vehicle - Car, Bike
+ * Invoice
+ * Reservation
+ * Location
+ * 
+ */
+
+/**
+ * Search based on same city
+ */
+class Location {
+	String name;
+}
+
+enum VehicleType {
+	Car,
+	Bike;
+}
+
+abstract class Vehicle {
+	String vehicleNum;
+	VehicleType type;
+	
+}
+
+class Car extends Vehicle {
+	
+}
+
+class Bike extends Vehicle {
+	
+}
+
+public class VehicleRental {
+
+}

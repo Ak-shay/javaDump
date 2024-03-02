@@ -1,0 +1,46 @@
+package CoreConcepts;
+
+/**
+ * Thread Pool
+ * It is a collection of threads aka workers, which are available to perform submitted tasks
+ * Once completed, worker thread get back to thread pool and wait for a new task to assign
+ * thread can be re-used
+ * Thread creation takes time as certain memory needs to allocated (or some work has to be done)
+ * but with thread pool, threads are already created and we can re-use them.
+ * Thread creation is saved
+ * Increase performance - more threads mean more context switching, 
+ * using pool we have predefined num of threads
+ * 
+ * Tasks are put in queue, as soon as a thread is free, It gets assigned
+ * 
+ * java.util.Concurrent have a framework
+ */
+
+/**
+ * ThreadPoolExecuter(corePoolSize, maxSize, keepAliveTime, TimeUnit unit, maxPoolSize, workQueue, handler)
+ * helps to create customized thread pool
+ * task queue size
+ * first min Size thread will be spawned then later task will be put in queue
+ * if queue is full then 1 more thread will be spawned if maxThread size is not reached
+ * and that task will be taken care by the new thread
+ * why not create thread first before filling queue? because idea of min threads is it is sufficient to perform, 
+ * once all threads are created they will come back to pool, average thread wont be min in this case 
+ * 
+ * Lets say new task come and queue is full and the max thread has reach
+ * This task will be rejected.
+ * 
+ * 
+ * if any thread gets back, it will check queue and run
+ * 
+ * corePoolSize/min threads: num of threads initially created and keep in pool even if they are idle
+ * allowCoreThreadTimeOut: property of ThreadPoolExecuter, default is false. If true, 
+ * idle threads will be terminated if crosses keepAliveTime time sitting idle
+ * unit: sec, hour, min, ms.. unit for keepAliveTime
+ * 
+ * 
+ * 
+ */
+
+public class ThreadPool {
+
+}

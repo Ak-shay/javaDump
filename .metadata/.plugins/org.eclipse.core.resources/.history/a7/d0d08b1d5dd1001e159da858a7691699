@@ -1,0 +1,45 @@
+package LLDQuestions;
+
+/**
+ * Design tic tac toe game
+ * 2 player with a marker
+ * n*n board
+ * winning condition
+ * chance one by one
+ * Game can end with a winner or draw
+ * Game history
+ * undo functionality
+ */
+
+/**
+ * Player
+ * Cell
+ * Board
+ * 
+ * 
+ */
+
+class TicTacToePlayer {
+	String name;
+}
+
+class Marker {
+	char marker;
+	
+	Marker(char ch) {
+		this.marker = ch;
+	}
+}
+
+class TicTacToeBoard {
+	char[][] board;
+	
+	Board(int size) {
+		this.board = new char[size][size];
+	}
+}
+
+
+public class TicTacToe {
+
+}

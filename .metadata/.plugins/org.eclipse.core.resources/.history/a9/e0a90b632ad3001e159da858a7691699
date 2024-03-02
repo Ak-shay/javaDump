@@ -1,0 +1,67 @@
+package CoreConcepts;
+
+
+class RunnableImpl implements Runnable {
+	public void run() {
+		System.out.println("Run method from thread: " + Thread.currentThread().getName());
+	}
+}
+
+class ThreadExtend extends Thread {
+	public void run() {
+		System.out.println("Run method from thread: " + Thread.currentThread().getName());
+	}
+}
+
+
+class SharedResource {
+	boolean available = false;
+	
+	synchronized void addItem() {
+		this.available = true;
+		System.out.println("added new item");
+	}
+	
+	synchronized void consumeItem () {
+		while(!this.available) {
+			System.out.println("Thread trying to consume but item not availble" + Thread.currentThread().getName());
+			try {
+				wait(); // monitor lock is released
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println("Thread consumed item" + Thread.currentThread().getName());
+		this.available = false;		
+	}
+}
+
+
+public class Threads {
+	public static void main(String args[]) {
+		// main thread
+		System.out.println("Run method from thread: " + Thread.currentThread().getName());
+		
+		Thread t1 = new Thread(new RunnableImpl()); // thread created
+		t1.start(); // starts the thread, calls the run method
+		
+		Thread t2 = new Thread(() -> {
+			System.out.println("Run method from thread: " + Thread.currentThread().getName());
+		});
+		t2.start();
+		
+		Thread t3 = new ThreadExtend();
+		t3.start();
+		
+		
+		// shared resource
+		SharedResource r = new SharedResource();
+		Thread consumer = new Thread(() -> r.consumeItem());
+		Thread supplier = new Thread(() -> r.addItem());
+		
+		consumer.start();
+		supplier.start();
+	}
+	
+
+}

@@ -1,0 +1,68 @@
+package LLDQuestions;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Design a parking lot
+ * Requirements:
+ * 1. Multi level parking
+ * 2. Two wheeler and four wheeler space
+ * 3. Multiple entry gate
+ * 4. get nearest slot and assign a ticket 
+ * 5. multiple Exits 
+ * 6. Give ticket and pay due
+ */
+
+
+class Vehicle {
+	String name;
+	String type;
+	Vehicle(String name, String type) {
+		this.name = name;
+		this.type = type;
+	}
+}
+
+class Slot {
+	String id;
+	Vehicle vehical;
+	
+	void parkVehicle(Vehicle v) {
+		this.vehical = v;
+	};
+	
+	Slot(String id) {
+		this.id = id;
+		this.vehical = null;
+	}
+	
+	boolean isEmpty() {
+		return this.vehical == null;
+	}
+	
+	void emptySlot() {
+		this.vehical = null;
+	}
+}
+
+abstract class SlotManager {
+	List<Slot> slots;
+	
+	SlotManager(int numOfSlots) {
+		this.slots = new ArrayList<Slot>();
+		
+	}
+}
+
+class TwoWheelerSlotManager extends SlotManager {
+	
+}
+
+public class ParkingLot {
+	public static void main(String args[]) {
+		Vehicle v1 = new Vehicle("v1", "TwoWheeler");
+		System.out.println("hey");
+	}
+
+}

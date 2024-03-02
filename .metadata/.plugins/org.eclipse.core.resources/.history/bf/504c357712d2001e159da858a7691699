@@ -1,0 +1,11 @@
+package DesignPattern;
+
+/**
+ * When we want to hide system complexity from the client
+ * Eg: Car: when driver (client) press accelerator speeds go up, brake sped go down
+ * but real complexity is not known
+ */
+
+public class Facade {
+
+}

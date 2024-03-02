@@ -1,0 +1,126 @@
+package LLDQuestions;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
+
+/**
+ * Design tic tac toe game
+ * 2 player with a marker
+ * n*n board
+ * winning condition
+ * chance one by one
+ * Game can end with a winner or draw
+ * Game history
+ * undo functionality
+ */
+
+/**
+ * Player
+ * Cell
+ * Board
+ * 
+ * 
+ */
+
+class TicTacToePlayer {
+	String name;
+	Marker marker;
+	
+	TicTacToePlayer(String name, Marker marker) {
+		this.name = name;
+		this.marker = marker;
+	}
+}
+
+abstract class Marker {
+	protected char marker;
+	
+	Marker(char ch) {
+		this.marker = ch;
+	}
+}
+
+
+class XMarker extends Marker {
+	XMarker() {
+		super('X');
+	}
+}
+
+class OMarker extends Marker {
+	OMarker() {
+		super('O');
+	}
+}
+
+
+// Player's turn, winning condition
+class GameController {
+	Deque<TicTacToePlayer> players;
+	
+	GameController(String player1, String player2) {
+		this.players = new ArrayDeque<TicTacToePlayer>();
+		this.players.addLast(new TicTacToePlayer(player1, new XMarker()));
+		this.players.addLast(new TicTacToePlayer(player2, new OMarker()));
+	}
+	
+	TicTacToePlayer movingPlayer() {
+		TicTacToePlayer p = players.pop();
+		this.players.addLast(p);
+		return p;
+	}
+	
+	boolean playerWon() {
+		// algo for winning conditions
+		return false;
+	}
+}
+
+class TicTacToeBoard {
+	Marker[][] board;
+	
+	TicTacToeBoard(int size) {
+		this.board = new Marker[size][size];
+	}
+	
+	int maxChance() {
+		return this.board.length * this.board.length;
+	}
+	
+	boolean mark(Marker marker, int i, int j) {
+		if (this.board[i][j] == null) {
+			this.board[i][j] = marker;
+			return true;
+		}
+		return false;
+	}
+}
+
+class TicTacToeGame {
+	TicTacToeBoard board;
+	GameController controller;
+	
+	
+	TicTacToeGame(int size, String player1, String player2) {
+		this.board = new TicTacToeBoard(size);
+		this.controller = new GameController(player1, player2);
+	}
+	
+	void startGame() {
+		int chances = this.board.maxChance();
+		boolean winner = false;
+		while(winner || chances > 0) {
+			// get moving player
+		}
+	}
+}
+
+
+public class TicTacToe {
+	public static void main(String args[]) {
+		
+		TicTacToeGame g1 = new TicTacToeGame(3, "p1", "p2");
+		g1.startGame();
+	}
+
+}

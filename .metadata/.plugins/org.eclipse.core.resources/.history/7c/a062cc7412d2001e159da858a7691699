@@ -1,0 +1,9 @@
+package DesignPattern;
+
+/**
+ * Factory of factory
+ */
+
+public class AbstractFactory {
+
+}

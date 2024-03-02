@@ -1,0 +1,21 @@
+package CoreConcepts;
+
+/**
+ * Thread Pool
+ * It is a collection of threads aka workers, which are available to perform submitted tasks
+ * Once completed, worker thread get back to thread pool and wait for a new task to assign
+ * thread can be re-used
+ * Thread creation takes time as certain memory needs to allocated (or some work has to be done)
+ * but with thread pool, threads are already created and we can re-use them.
+ * Thread creation is saved
+ * Increase performance - more threads mean more context switching, using pool we have predefined num of threads
+ * 
+ * 
+ * Tasks are put in queue, as soon as a thread is free. It is assigned
+ * 
+ * java.util.Concurrent have a framework for this
+ */
+
+public class ThreadPool {
+
+}

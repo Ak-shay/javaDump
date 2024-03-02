@@ -1,0 +1,37 @@
+package CoreConcepts;
+
+class SharedResource {
+	int counter;
+	
+	void increment() {
+		this.counter++;
+		// this is not atomic
+		// steps as follow
+		// 1. load value of counter
+		// 2. increment valued of counter with 1
+		// 3. assign new value to counter
+		
+		// suppose two thread to increment in parallel
+		// both will load 1 as increment to 2 
+		// and assign counter to 2
+	}
+	
+	int get() {
+		return this.counter;
+	}
+}
+
+public class AtomicOperation {
+	public static void main(String args[]) {
+		SharedResource r = new SharedResource();
+		Thread t1 = new Thread(() -> {
+			r.increment();
+		});
+		Thread t2 = new Thread(() -> {
+			r.increment();
+		});
+		
+		t1.start();
+		t2.start();
+	}
+}

@@ -1,0 +1,19 @@
+package CoreConcepts;
+
+/**
+ * used to examine the classes, methods, fields, interfaces at runtime 
+ * and also possible to change the behavior of classes too.
+ * 
+ * JVM creates a class Class everytime it loaded some class
+ * Class class contains metadata about that class
+ */
+
+class Bird {
+	void canFly() {
+		
+	}
+}
+
+public class Reflection {
+
+}

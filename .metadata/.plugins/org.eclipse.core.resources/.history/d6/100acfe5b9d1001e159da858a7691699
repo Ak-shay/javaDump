@@ -1,0 +1,9 @@
+package DesignPattern;
+
+/**
+ * When we want to hide system complexity from the client
+ */
+
+public class Facade {
+
+}

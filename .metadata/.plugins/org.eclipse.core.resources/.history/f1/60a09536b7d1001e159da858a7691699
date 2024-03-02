@@ -1,0 +1,94 @@
+package LLDQuestions;
+
+import java.util.Date;
+import java.util.List;
+
+/**
+ * Design a car rental system (zoom car)
+ * 
+ * Flow:
+ * 1. User searches and gets list of vehicles in his city (store). (Filter based on location and and vehicle type)
+ * 2. User reserve a vehicle and gets a invoice (calculate cost per day)
+ * 3. User returns the vehicle and pay the amount
+ * 
+ * Objects:
+ * User
+ * Vehicle - Car, Bike
+ * Invoice
+ * Reservation
+ * Location
+ * 
+ */
+
+/**
+ * Search based on same city
+ */
+class Location {
+	String address;
+	String cityName;
+}
+
+enum VehicleType {
+	Car,
+	Bike;
+}
+
+abstract class Vehicle {
+	String vehicleNum;
+	VehicleType type;
+	
+}
+
+class Car extends Vehicle {
+	
+}
+
+class Bike extends Vehicle {
+	
+}
+
+class VehicleManager {
+	List<Vehicle> vehicles;
+	
+	void addVehicle(Vehicle v) {
+		this.vehicles.add(v);
+	}
+}
+
+enum ReservationStatus {
+	IN_PROGRESS,
+	COMPLETED,
+	CANCELLED
+}
+
+class Reservation {
+	Vehicle vehicle;
+	Date from;
+	Date to;
+	User user;
+}
+
+class RerservationManager {
+	List<Reservation> reservations;
+}
+
+class Store {
+	Location location;
+	VehicleManager vehicleManager;
+	RerservationManager reservationManager;
+	
+}
+
+class StoreManager {
+	List<Store> stores;
+}
+
+class RentalSystem {
+	StoreManager storeManager;
+	
+}
+
+public class VehicleRental {
+	
+
+}

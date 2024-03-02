@@ -1,0 +1,21 @@
+package CoreConcepts;
+
+/**
+ * Think stream like a pipeline through which our collection elements pass through
+ * while passing various operations like filtering, sorting etc can applied
+ * useful when bulk processing as it can do parallel processing
+ * 
+ * step1: create/open stream of collection
+ * step2: add intermediate operations like filter, sorted, map, distinct etc
+ * It transform one stream to another so that more operations can be applied
+ * these are lazy operations -> gets executed only when terminal operation is invoked
+ * step3: termination operation: collect, reduce, count etc.. , it will close the stream, no more operations can be added
+ * original collection is affected, you'll get a new
+ */
+
+public class Stream {
+	public static void main() {
+		
+	}
+
+}

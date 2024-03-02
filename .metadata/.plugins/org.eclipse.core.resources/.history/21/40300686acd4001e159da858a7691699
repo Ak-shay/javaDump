@@ -1,0 +1,15 @@
+package CoreConcepts;
+
+class SharedResource {
+	int counter;
+	
+	void increment() {
+		this.counter++;
+	}
+	
+	int get() return this.counter;
+}
+
+public class AtomicOperation {
+
+}

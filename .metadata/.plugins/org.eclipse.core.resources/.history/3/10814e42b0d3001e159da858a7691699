@@ -1,0 +1,92 @@
+package CoreConcepts;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
+
+/**
+ * A fixed queue shared between a consumer and producer
+ * consume don't consume if queue in empty
+ * producer don't produce to if queue is full
+ */
+
+class QueueResource {
+	private Deque<Integer> q;
+	int size;
+	int count;
+	
+	QueueResource(int s) {
+		this.q = new ArrayDeque<Integer>(s);
+		this.size = s;
+		this.count = 0;
+	}
+	
+	void produce() {
+		synchronized(this) {
+			
+		}
+		while(this.q.size() == this.size) {
+			System.out.println("Tried producing but queue is full " + Thread.currentThread().getName());
+			try {
+				wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		try {
+			Thread.sleep(2000);
+			System.out.println("Produced: " + count + " by thread: " + Thread.currentThread().getName());
+			this.q.addFirst(count++);
+			notifyAll();
+			this.produce();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	void consume() {
+		synchronized (this) {
+			while (this.q.isEmpty()) {
+				System.out.println("Tried consuming but no data found " + Thread.currentThread().getName());
+				try {
+					wait();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			try {
+				Thread.sleep(3000);
+				System.out.println("Consumed: " + this.q.removeFirst() + " by thread: " + Thread.currentThread().getName());
+				
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		notifyAll();
+		this.consume();
+		
+	}
+}
+
+public class ProducerConsumerProblem {
+	
+	public static void main(String args[]) {
+		QueueResource r = new QueueResource(5);
+		Thread pro = new Thread(() -> {
+			r.produce();
+		});
+		Thread con = new Thread(() -> {
+			r.consume();
+		});
+		
+		con.start();
+		pro.start();
+		
+	}
+	
+	
+
+}

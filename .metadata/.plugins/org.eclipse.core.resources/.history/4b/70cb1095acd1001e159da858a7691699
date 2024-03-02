@@ -1,0 +1,182 @@
+package LLDQuestions;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Design Split Wise
+ * Requirements:
+ * Add friends
+ * create groups
+ * add friends to groups
+ * one-one transactions
+ * group transactions
+ * split capability - equal, unequal, % wise
+ * Balance sheet
+ * simplify feature
+ */
+
+/**
+ * Splitwise driver
+ * User
+ * Group
+ * Expense
+ * split
+ * balance sheet
+ */
+
+class Balance {
+	double owe;
+	double receive;
+}
+
+class UserExpenseBalanceSheet {
+	Map<User, Balance> friendsBalance;
+	double totalPaid;
+	double totalExpense;
+	double totalOwe;
+	double totalRecieve;
+}
+
+class UserExpenseBalanceSheetControler {
+	UserExpenseBalanceSheet balanceSheet;
+	void updateBalance(Expense expense) {
+		
+	}
+}
+
+class User {
+	String name;
+	UserExpenseBalanceSheetControler balanceSheetController;
+	User(String name) {
+		this.name = name;
+	}
+}
+
+class UserManager {
+	List<User> users;
+	
+	UserManager() {
+		this.users = new ArrayList<User>();
+	}
+	
+	User addUser(String name) {
+		User newUser = new User(name);
+		this.users.add(newUser);
+		return newUser;
+	}
+}
+
+
+class Group {
+	String name;
+	List<User> users;
+	List<Expense> expenses;
+	
+	Group(String name, List<User> users) {
+		this.name = name;
+		this.users = users;
+	}
+	
+	void addExpense(Expense ex) {
+		this.expenses.add(ex);
+	}
+	
+	void addUser(User user) {
+		this.users.add(user);
+	}
+}
+
+class GroupManager {
+	List<Group> groups;
+	ExpenseController expenseController;
+	
+	GroupManager() {
+		this.groups = new ArrayList<Group>();
+		this.expenseController = new ExpenseController();
+	}
+	
+	Group createGroup(List<User> users, String name) {
+		new Group(name, users);
+	}
+	
+	void addUser(Group grp, User user) {
+		grp.addUser(user);
+	}
+	
+	Expense addExpense() {
+		this.expenseController.addExpense();
+	}
+}
+
+enum SplitType {
+	EQUAL,
+	UNEQUAL,
+	PERCENTAGE
+}
+
+class Split {
+	User user;
+	double amountOwe;
+}
+
+class Expense {
+	String description;
+	User paidBy;
+	double amount;
+	List<User> to;
+	SplitType type;
+	List<Split> paidto;
+	
+	Expense() {
+		
+	}
+}
+
+class ExpenseController {
+	Expense addExpense() {
+		
+	}
+}
+
+class SplitwiseDriver {
+	UserManager userManager;
+	GroupManager groupManager;
+	ExpenseController expenseController;
+	
+	SplitwiseDriver() {
+		this.userManager = new UserManager();
+		this.groupManager = new GroupManager();
+		this.expenseController = new ExpenseController();
+	}
+	
+	User addUser(String name) {
+		return this.userManager.addUser(name);
+	}
+	
+	void addExpense(User paidBy, double amount, SplitType type, List<User> paidTo) {
+		this.expenseController.addExpense();
+	}
+	
+	void addGroupExpense(User paidBy, double amount, SplitType type, List<User> paidTo) {
+		this.expenseController.addExpense();
+	}
+	
+}
+
+
+public class SplitWise {
+	public static void main(String args[]) {
+		SplitwiseDriver app = new SplitwiseDriver();
+		User user1 = app.addUser("user1");
+		User user2 = app.addUser("user2");
+		User user3 = app.addUser("user3");
+		
+		app.addExpense(user1, 100, SplitType.EQUAL, Arrays.asList(user1, user2, user3));
+		
+		
+	}
+
+}
